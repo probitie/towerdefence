@@ -5,6 +5,7 @@ var build_mode
 var build_location
 var build_type
 var build_valid
+var build_tile
 
 func _ready():
 	map_node = $Map1
@@ -19,9 +20,15 @@ func _process(delta):
 	
 
 func _unhandled_input(event):
-	pass
+	if event.is_action_released("ui_cancel") and build_mode == true:
+		cancel_build_mode()
+	if event.is_action_released("ui_accept") and build_mode == true:
+		verify_and_build()
+		cancel_build_mode()
 
 func initiate_build_mode(tower_type):
+	if build_mode:
+		cancel_build_mode()
 	build_type = tower_type + "T1"
 	build_mode = true
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
@@ -35,12 +42,20 @@ func update_tower_preview():
 		get_node("UI").update_tower_preview(tile_position, "ad54ff3c")
 		build_valid = true
 		build_location = tile_position
+		build_tile = current_tile
 	else:
 		get_node("UI").update_tower_preview(tile_position, "adff4545")
 		build_valid = false
 
 func cancel_build_mode():
-	pass
+	build_mode = false
+	build_valid = false
+	$UI/TowerPreview.free()
 
 func verify_and_build():
-	pass
+	if build_valid:
+		var new_tower = load("res://scenes/turrets/" + build_type + ".tscn").instance()
+		new_tower.position = build_location
+		map_node.get_node("Turrets").add_child(new_tower, true)
+		map_node.get_node("TowerExclusion").set_cellv(build_tile, 6)
+		

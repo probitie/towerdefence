@@ -18,6 +18,7 @@ script = ExtResource( 6 )
 [node name="HUD" type="Control" parent="UI"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
 margin_right = 40.0
