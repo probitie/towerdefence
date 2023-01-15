@@ -36,6 +36,9 @@ func update_tower_preview(new_position, color):
 ## Game Control functions
 ##
 func _on_PausePlay_pressed():
+	if get_parent().build_mode:
+		get_parent().cancel_build_mode()
+	
 	if get_tree().is_paused():
 		get_tree().paused = false
 	elif get_parent().current_wave == 0:
@@ -46,6 +49,8 @@ func _on_PausePlay_pressed():
 
 
 func _on_SpeedUp_pressed():
+	if get_parent().build_mode:
+		get_parent().cancel_build_mode()
 	if Engine.get_time_scale() == 2.0:
 		Engine.set_time_scale(1.0)
 	else:
