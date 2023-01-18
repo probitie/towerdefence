@@ -36,6 +36,8 @@ func start_next_wave():
 
 func retrieve_wave_data():
 	var wave_data = [["BlueTank", 3.0], ["BlueTank", 0.1]]
+	for i in range(current_wave + 1):
+		wave_data.append(["BlueTank", 0.1 + i*0.1])
 	current_wave += 1
 	enemies_in_wave = wave_data.size()
 	return wave_data
@@ -81,6 +83,7 @@ func verify_and_build():
 		var new_tower = load("res://scenes/turrets/" + build_type + ".tscn").instance()
 		new_tower.position = build_location
 		new_tower.type = build_type
+		new_tower.category = GameData.tower_data[build_type]["category"]
 		new_tower.built = true
 		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 6)
