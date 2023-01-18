@@ -1,7 +1,9 @@
 extends Node2D
 
+var type
 var enemy_array = []
 var built = false
+var ready = true # reasy to shoot the enemy
 var enemy
 
 func _ready():
@@ -12,9 +14,18 @@ func _physics_process(delta):
 	if enemy_array.size() != 0 and built:
 		select_enemy()
 		turn()
+		if ready:
+			fire()
 	else:
 		enemy = null
 	
+func fire():
+	ready = false
+	enemy.on_hit(GameData.tower_data[type]['damage'])
+	print("fire")
+	yield(get_tree().create_timer(GameData.tower_data[type]['rof']), 'timeout')
+	ready = true
+
 func select_enemy():
 	var enemy_progress_array = []
 	for i in enemy_array:
