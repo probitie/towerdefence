@@ -1,7 +1,7 @@
 extends PathFollow2D
 
 signal base_damage(damage)
-signal earned(money)
+signal kill(money)
 
 var speed = 150
 var hp = 100
@@ -51,4 +51,4 @@ func on_destroy():
 	$KinematicBody2D.queue_free()  # delete kinematicbody so turret will not fire it again
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free() # delete tank after a delay to allow impact animation finish playing
-	emit_signal("earned", reward)
+	emit_signal("kill", reward)

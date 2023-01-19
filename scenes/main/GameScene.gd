@@ -12,6 +12,9 @@ var build_tile
 var current_wave = 0
 var enemies_in_wave = 0
 
+
+var enemies_left = 0
+
 var base_health = 100
 var start_money = 250
 
@@ -37,15 +40,17 @@ func _unhandled_input(event):
 ## Wave functions
 ##
 func start_next_wave():
+	current_wave += 1
+	$UI.set_wave(current_wave)
 	var wave_data = retrieve_wave_data()
 	yield(get_tree().create_timer(0.2), "timeout")
+	enemies_left = len(wave_data)
 	spawn_enemies()
 
 func retrieve_wave_data():
 	var wave_data = [["BlueTank", 3.0], ["BlueTank", 0.1]]
-	for i in range(10):
-		wave_data.append(["BlueTank", 0.3])
-	current_wave += 1
+	for i in range(current_wave*2):
+		wave_data.append(["BlueTank", 0.5])
 	enemies_in_wave = wave_data.size()
 	return wave_data
 
@@ -54,7 +59,7 @@ func spawn_enemies():
 	for i in wave_data:
 		var new_enemy = load("res://scenes/enemies/" + i[0] + ".tscn").instance()
 		new_enemy.connect("base_damage", self, "on_base_damage")
-		new_enemy.connect("earned", self, "on_earning")
+		new_enemy.connect("kill", self, "on_killing_enemy")
 		map_node.get_node("Path").add_child(new_enemy, true)
 		yield(get_tree().create_timer(i[1]), "timeout")
 
@@ -108,6 +113,8 @@ func verify_and_build():
 		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 6)
 
-func on_earning(money):
+func on_killing_enemy(money):
 	$UI.earn(money)
-		
+	enemies_left -= 1
+	if enemies_left <= 0:
+		start_next_wave()

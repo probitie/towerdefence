@@ -143,6 +143,37 @@ text = "100"
 align = 2
 valign = 1
 
+[node name="Control2" type="Control" parent="UI/HUD/InfoBar/H"]
+margin_left = 248.0
+margin_right = 368.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 0 )
+
+[node name="WaveLabel" type="Label" parent="UI/HUD/InfoBar/H"]
+margin_left = 372.0
+margin_right = 492.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 60 )
+size_flags_horizontal = 2
+size_flags_vertical = 0
+custom_colors/font_color_shadow = Color( 0.168627, 0.168627, 0.168627, 1 )
+custom_fonts/font = ExtResource( 10 )
+text = "wave"
+align = 2
+valign = 1
+
+[node name="WaveNumber" type="Label" parent="UI/HUD/InfoBar/H"]
+margin_left = 516.0
+margin_right = 576.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 2
+custom_colors/font_color_shadow = Color( 0.168627, 0.168627, 0.168627, 1 )
+custom_fonts/font = ExtResource( 10 )
+text = "0"
+align = 2
+valign = 1
+
 [node name="Icon" type="TextureRect" parent="UI/HUD/InfoBar/H"]
 margin_left = 742.0
 margin_right = 802.0
