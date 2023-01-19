@@ -54,6 +54,7 @@ func spawn_enemies():
 	for i in wave_data:
 		var new_enemy = load("res://scenes/enemies/" + i[0] + ".tscn").instance()
 		new_enemy.connect("base_damage", self, "on_base_damage")
+		new_enemy.connect("earned", self, "on_earning")
 		map_node.get_node("Path").add_child(new_enemy, true)
 		yield(get_tree().create_timer(i[1]), "timeout")
 
@@ -72,7 +73,7 @@ func initiate_build_mode(tower_type):
 		cancel_build_mode()
 	build_type = tower_type + "T1"
 	if not $UI.can_buy(GameData.tower_data[build_type]["price"]):
-		print("can not buy this item")
+		print("can not affort this turret")
 		return
 	build_mode = true
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
@@ -83,12 +84,12 @@ func update_tower_preview():
 	var tile_position = map_node.get_node("TowerExclusion").map_to_world(current_tile)
 	
 	if map_node.get_node("TowerExclusion").get_cellv(current_tile) == -1:
-		get_node("UI").update_tower_preview(tile_position, "ad54ff3c")
+		$UI.update_tower_preview(tile_position, "ad54ff3c")
 		build_valid = true
 		build_location = tile_position
 		build_tile = current_tile
 	else:
-		get_node("UI").update_tower_preview(tile_position, "adff4545")
+		$UI.update_tower_preview(tile_position, "adff4545")
 		build_valid = false
 
 func cancel_build_mode():
@@ -106,4 +107,7 @@ func verify_and_build():
 		$UI.buy(GameData.tower_data[build_type]["price"])
 		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 6)
+
+func on_earning(money):
+	$UI.earn(money)
 		

@@ -78,6 +78,10 @@ func set_money(new_value):
 	money = new_value
 	_update_money_label()
 	
+func earn(some_money):
+	money += some_money
+	_update_money_label()
+	
 # return result of buying
 func can_buy(price):
 	return (money - price) > 0
