@@ -11,8 +11,7 @@ var build_tile
 
 var current_wave = 0
 var enemies_in_wave = 0
-
-
+var starting_wave = false  # like mutex
 var enemies_left = 0
 
 var base_health = 100
@@ -40,15 +39,17 @@ func _unhandled_input(event):
 ## Wave functions
 ##
 func start_next_wave():
+	starting_wave = true
 	current_wave += 1
+	yield(get_tree().create_timer(3), "timeout")
 	$UI.set_wave(current_wave)
 	var wave_data = retrieve_wave_data()
-	yield(get_tree().create_timer(0.2), "timeout")
 	enemies_left = len(wave_data)
 	spawn_enemies()
+	starting_wave = false
 
 func retrieve_wave_data():
-	var wave_data = [["BlueTank", 3.0], ["BlueTank", 0.1]]
+	var wave_data = []
 	for i in range(current_wave*2):
 		wave_data.append(["BlueTank", 0.5])
 	enemies_in_wave = wave_data.size()
@@ -116,5 +117,5 @@ func verify_and_build():
 func on_killing_enemy(money):
 	$UI.earn(money)
 	enemies_left -= 1
-	if enemies_left <= 0:
+	if enemies_left <= 0 and not starting_wave:
 		start_next_wave()
