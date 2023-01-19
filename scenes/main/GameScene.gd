@@ -50,8 +50,11 @@ func start_next_wave():
 
 func retrieve_wave_data():
 	var wave_data = []
-	for i in range(current_wave*2):
-		wave_data.append(["BlueTank", 0.5])
+	#for i in range(current_wave*2):
+	#	wave_data.append(["BlueTank", 0.5])
+	for i in range(1):
+		wave_data.append(["RedTank", 1.5])
+		
 	enemies_in_wave = wave_data.size()
 	return wave_data
 
