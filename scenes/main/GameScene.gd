@@ -49,14 +49,20 @@ func start_next_wave():
 	starting_wave = false
 
 func retrieve_wave_data():
-	var wave_data = []
-	#for i in range(current_wave*2):
-	#	wave_data.append(["BlueTank", 0.5])
-	for i in range(1):
-		wave_data.append(["RedTank", 1.5])
+	var raw_wave_data = []
+	
+	
+	if current_wave - 1 == len(GameData.wave_data):
+		print("you win uwu")
+		emit_signal("game_finished", "victory")
+		return [] # todo maybe yield timer to wait until it process the signal
 		
-	enemies_in_wave = wave_data.size()
-	return wave_data
+	for tanks_part in GameData.wave_data[current_wave - 1]["tanks"]:
+		for i in range(tanks_part["repeat"]):
+			raw_wave_data.append([tanks_part["type"], tanks_part["delay"]])
+		
+	enemies_in_wave = len(raw_wave_data)
+	return raw_wave_data
 
 func spawn_enemies():
 	var wave_data = retrieve_wave_data()

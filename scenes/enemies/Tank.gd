@@ -14,7 +14,7 @@ var projectile_impact = preload("res://scenes/support/ProjectileImpact.tscn")
 
 
 func _ready(): # you need to move all stuff into other functions and call them explicitly in overridden methods like this
-	pass
+	set_up_health_bar()
 
 func set_up_health_bar():
 	health_bar.max_value = hp
