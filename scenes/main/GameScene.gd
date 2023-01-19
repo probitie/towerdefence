@@ -13,11 +13,13 @@ var current_wave = 0
 var enemies_in_wave = 0
 
 var base_health = 100
+var start_money = 250
 
 func _ready():
 	map_node = $Map1
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
+	$UI.set_money(start_money)
 
 func _process(delta):
 	if build_mode:
@@ -69,6 +71,9 @@ func initiate_build_mode(tower_type):
 	if build_mode:
 		cancel_build_mode()
 	build_type = tower_type + "T1"
+	if not $UI.can_buy(GameData.tower_data[build_type]["price"]):
+		print("can not buy this item")
+		return
 	build_mode = true
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
 
@@ -98,6 +103,7 @@ func verify_and_build():
 		new_tower.type = build_type
 		new_tower.category = GameData.tower_data[build_type]["category"]
 		new_tower.built = true
+		$UI.buy(GameData.tower_data[build_type]["price"])
 		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 6)
 		

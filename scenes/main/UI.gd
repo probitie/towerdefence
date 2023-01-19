@@ -3,6 +3,8 @@ extends CanvasLayer
 onready var hp_bar = $HUD/InfoBar/H/HP
 onready var hp_bar_tween = $HUD/InfoBar/H/HP/Tween
 
+var money = 0
+
 
 func set_tower_preview(tower_type, mouse_position):
 	var drag_tower = load("res://scenes/turrets/" + tower_type + ".tscn").instance()
@@ -68,3 +70,21 @@ func update_health_bar(base_health):
 		hp_bar.set_tint_progress("e1be32")
 	else:
 		hp_bar.set_tint_progress("e11e1e")
+
+func get_money():
+	return money
+
+func set_money(new_value):
+	money = new_value
+	_update_money_label()
+	
+# return result of buying
+func can_buy(price):
+	return (money - price) > 0
+
+func buy(price):
+	money -= price
+	_update_money_label()
+	
+func _update_money_label():
+	$HUD/InfoBar/H/Money.text = str(money)
