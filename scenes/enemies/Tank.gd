@@ -3,10 +3,10 @@ extends PathFollow2D
 signal base_damage(damage)
 signal kill(money)
 
-var speed = 150
-var hp = 100
-var base_damage = 21
-var reward = 5
+var speed
+var hp
+var base_damage
+var reward
 
 onready var health_bar = $HealthBar
 onready var impact_area = $Impact
