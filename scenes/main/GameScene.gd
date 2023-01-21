@@ -90,7 +90,7 @@ func initiate_build_mode(tower_type):
 	if build_mode:
 		cancel_build_mode()
 	build_type = tower_type + "T1"
-	if not $UI.can_buy(GameData.tower_data[build_type]["price"]):
+	if GameData.tower_data[build_type]["price"] > $UI.money:
 		print("can not affort this turret")
 		return
 	build_mode = true
