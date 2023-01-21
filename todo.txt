@@ -1,5 +1,6 @@
 main menu does not work after winning or losing the game
-add missile
+*add missile
+*move "fire_gun, fire_missile etc to each turret file"
 add selectiing gun when clicking on it on the field
 add target priorities
 destroy turrets 
@@ -7,6 +8,7 @@ particles should be above other tanks always
 sometimes it freezes on the wave with no reason
  may be it cuz of speeding up
 do not use UI for counting and storing money - only for setting money label
+turret radar that allows other turrets in some radius attack air units
 
 tank does not receive damage cuz there are several tanks in one place
  so actualy they are receiving damage

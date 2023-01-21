@@ -20,23 +20,14 @@ func _physics_process(delta):
 			fire()
 	else:
 		enemy = null
-	
+
 func fire():
 	ready = false
-	
-	if category == "Projectile":
-		fire_gun()
-	elif category == "Missile":
-		fire_missile()
-	enemy.on_hit(GameData.tower_data[type]['damage'])
-	yield(get_tree().create_timer(GameData.tower_data[type]['rof']), 'timeout')
+	yield(fire_process(), "completed") # await 
 	ready = true
 
-func fire_gun():
-	$AnimationPlayer.play("Fire")
-
-func fire_missile():
-	print("fire missle: not implemented")
+func fire_process():
+	pass # call animations you want, process damage here	
 
 func select_enemy():
 	var enemy_progress_array = []
