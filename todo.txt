@@ -9,6 +9,7 @@ sometimes it freezes on the wave with no reason
  may be it cuz of speeding up
 do not use UI for counting and storing money - only for setting money label
 turret radar that allows other turrets in some radius attack air units
+remove turret's type field / make it const for each class i dunno
 
 tank does not receive damage cuz there are several tanks in one place
  so actualy they are receiving damage

@@ -14,10 +14,7 @@ func _ready():
 func _physics_process(delta):
 	if enemy_array.size() != 0 and built:
 		select_enemy()
-		if not $AnimationPlayer.is_playing():
-			turn()
-		if not $AnimationPlayer.is_playing() and ready:
-			fire()
+		turn_and_fire()
 	else:
 		enemy = null
 
@@ -26,6 +23,12 @@ func fire():
 	yield(fire_process(), "completed") # await 
 	ready = true
 
+# OVERRIDE IN CHILD CLASS
+# turn turret and fire only with special conditions
+func turn_and_fire():
+	pass
+
+# OVERRIDE IN CHILD CLASS
 func fire_process():
 	pass # call animations you want, process damage here	
 
@@ -45,3 +48,6 @@ func _on_Range_body_entered(body):
 
 func _on_Range_body_exited(body):
 	enemy_array.erase(body.get_parent())
+	
+func get_tower_damage():
+	return GameData.tower_data[type]['damage']
