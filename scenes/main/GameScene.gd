@@ -21,7 +21,7 @@ var start_money = 80
 func _ready():
 	map_node = $Map1
 	for i in get_tree().get_nodes_in_group("build_buttons"):
-		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
+		i.connect("button_down", self, "initiate_build_mode", [i.get_name()])
 	$UI.set_money(start_money)
 	$UI.set_max_wave(max_wave)
 
