@@ -9,11 +9,42 @@ var user_data = null # TODO
 var tank_data = null
 var map_data = null
 
+# test waves
 var wave_data = [
 	{"tanks": 
 		[
+			{"type": "BlueTank", "delay": 0.5, "repeat": 1},
+		]
+	},
+	{"tanks": 
+		[
+			{"type": "BlueTank", "delay": 0.5, "repeat": 2},
+		]
+	},
+	{"tanks": 
+		[
+			{"type": "BlueTank", "delay": 0.5, "repeat": 3},
+		]
+	},
+	{"tanks": 
+		[
+			{"type": "BlueTank", "delay": 0.5, "repeat": 4},
+		]
+	},
+	{"tanks": 
+		[
+			{"type": "BlueTank", "delay": 0.5, "repeat": 5},
+		]
+	}
+]
+
+
+# actual waves REMOVE UNDERSCORE _ from NAME
+var wave_data_ = [
+	{"tanks": 
+		[
 			{"type": "BlueTank", "delay": 2.5, "repeat": 1},
-			{"type": "BlueTank", "delay": 1, "repeat": 4}
+			{"type": "BlueTank", "delay": 1, "repeat": 6}
 		]
 	},
 	{"tanks": 
@@ -39,7 +70,7 @@ var wave_data = [
 	{"tanks": 
 		[
 			{"type": "RedTank", "delay": 0.2, "repeat": 20},
-			{"type": "RedTank", "delay": 2, "repeat": 1},
+			{"type": "RedTank", "delay": 1, "repeat": 1},
 			{"type": "BlueTank", "delay": 0.1, "repeat": 50},
 		]
 	}

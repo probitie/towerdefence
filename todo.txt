@@ -1,12 +1,21 @@
-add more waves
-add max wave like 	wave 1/15
+*add max wave like 	wave 1/15
 main menu does not work
 add missile
 add selectiing gun when clicking on it on the field
 add target priorities
-dragging turret from build bar without releasing click
+*dragging turret from build bar without releasing click
 destroy turrets 
 particles should be above other tanks always
-sometimes tanks do not receive damage
-add flamethrower
+sometimes if I press buy button before i get enough money
+  and continue clicking after I get it it prints that I cant affort turret 
+sometimes it freezes on the second wave with no reason
+ may be it cuz of speeding up
 
+tank does not receive damage cuz there are several tanks in one place
+ so actualy they are receiving damage
+
+turrets:
+ flamethrower
+ railgun
+ grom tanki online
+ freeze (not like liquid but like a gun)

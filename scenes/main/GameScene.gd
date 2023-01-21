@@ -10,6 +10,7 @@ var build_valid
 var build_tile
 
 var current_wave = 0
+var max_wave = len(GameData.wave_data)
 var enemies_in_wave = 0
 var starting_wave = false  # like mutex
 var enemies_left = 0
@@ -22,6 +23,7 @@ func _ready():
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
 	$UI.set_money(start_money)
+	$UI.set_max_wave(max_wave)
 
 func _process(delta):
 	if build_mode:
@@ -51,8 +53,9 @@ func start_next_wave():
 func retrieve_wave_data():
 	var raw_wave_data = []
 	
-	
-	if current_wave - 1 == len(GameData.wave_data):
+	# +1 because current_wave starts from 1 but array index starts from 0
+	# and max wave is actually array index
+	if current_wave - 1 == max_wave: 
 		print("you win uwu")
 		emit_signal("game_finished", "victory")
 		return [] # todo maybe yield timer to wait until it process the signal

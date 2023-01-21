@@ -54,4 +54,5 @@ func on_destroy():
 	$KinematicBody2D.queue_free()  # delete kinematicbody so turret will not fire it again
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free() # delete tank after a delay to allow impact animation finish playing
+	print("kill tank " + str(self.get_instance_id()))
 	emit_signal("kill", reward)

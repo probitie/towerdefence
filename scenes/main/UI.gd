@@ -94,3 +94,7 @@ func _update_money_label():
 
 func set_wave(value):
 	$HUD/InfoBar/H/WaveNumber.text = str(value)
+	
+func set_max_wave(value):
+	$HUD/InfoBar/H/MaxWave.text = str(value)
+	
