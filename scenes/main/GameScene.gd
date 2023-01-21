@@ -15,7 +15,7 @@ var starting_wave = false  # like mutex
 var enemies_left = 0
 
 var base_health = 100
-var start_money = 250
+var start_money = 80
 
 func _ready():
 	map_node = $Map1

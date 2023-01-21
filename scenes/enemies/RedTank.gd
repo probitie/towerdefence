@@ -4,4 +4,4 @@ func _init():
 	speed = 75
 	hp = 400
 	base_damage = 200
-	reward = 100
+	reward = 70

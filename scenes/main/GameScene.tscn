@@ -28,10 +28,10 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="BuildBar" type="HBoxContainer" parent="UI/HUD"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -100.0
-margin_right = 164.0
+margin_left = 31.0
+margin_top = 620.0
+margin_right = 195.0
+margin_bottom = 720.0
 rect_min_size = Vector2( 100, 100 )
 
 [node name="Gun" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
@@ -76,14 +76,10 @@ texture = ExtResource( 3 )
 expand = true
 
 [node name="GameControls" type="HBoxContainer" parent="UI/HUD"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -144.0
-margin_top = -90.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 1136.0
+margin_top = 630.0
+margin_right = 1300.0
+margin_bottom = 700.0
 
 [node name="PausePlay" type="TextureButton" parent="UI/HUD/GameControls"]
 pause_mode = 2

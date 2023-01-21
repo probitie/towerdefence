@@ -1,0 +1,12 @@
+add more waves
+add max wave like 	wave 1/15
+main menu does not work
+add missile
+add selectiing gun when clicking on it on the field
+add target priorities
+dragging turret from build bar without releasing click
+destroy turrets 
+particles should be above other tanks always
+sometimes tanks do not receive damage
+add flamethrower
+
