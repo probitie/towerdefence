@@ -1,5 +1,5 @@
 *add missile
-rewrite turrets.gd to optimize inheritance and make it less coupling
+*rewrite turrets.gd to optimize inheritance and make it less coupling
 main menu does not work after winning or losing the game
 add selectiing gun when clicking on it on the field
 add target priorities

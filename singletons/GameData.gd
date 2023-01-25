@@ -1,7 +1,7 @@
 extends Node
 
 var tower_data = {
-	"GunT1": {"damage": 15, "rof": 0.35, "range": 350, "category": "Projectile", "price": 50},
+	"GunT1": {"damage": 15, "rof": 0.4, "range": 350, "category": "Projectile", "price": 50},
 	"MissleT1": {"damage": 100, "rof": 3, "range": 550, "category": "Missile", "price": 400}	
 }
 
