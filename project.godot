@@ -8,22 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node2D",
-"class": "FireBehaviour",
-"language": "GDScript",
-"path": "res://scenes/turrets/scripts_parts/FireBehaviour.gd"
-}, {
-"base": "Node",
-"class": "TargetSelector",
-"language": "GDScript",
-"path": "res://scenes/turrets/scripts_parts/TargetSelector.gd"
-} ]
-_global_script_class_icons={
-"FireBehaviour": "",
-"TargetSelector": ""
-}
-
 [application]
 
 config/name="towerdefence"
