@@ -13,6 +13,7 @@ var map_data = null
 var wave_data = [
 	{"tanks": 
 		[
+			{"type": "BlueTank", "delay": 0.5, "repeat": 10},
 			{"type": "HeavyTank", "delay": 0.5, "repeat": 1},
 		]
 	},
