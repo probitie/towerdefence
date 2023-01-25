@@ -2,7 +2,7 @@ extends Node2D
 
 
 var built = false
-var ready_to_shoot = true
+var ready = true  # ready to shoot
 var type
 
 
@@ -11,9 +11,6 @@ var enemies = []
 var target
 var fire_type: int  # enum fire_behaviours
 var target_type: int  # enum target_selectors
-
-var target_selector = TargetSelector
-var fire_behaviour = FireBehaviour
 
 enum fire_behaviours {
 	GUN_SHOT,
@@ -45,7 +42,10 @@ func _physics_process(delta):
 		target = null
 
 func handle_enemies():
-	print(str(type) + ": you should write custom enemy handling function")
+	if not $AnimationPlayer.is_playing():
+		turn()
+	if not $AnimationPlayer.is_playing() and ready:
+		fire()
 	
 func select_target():
 	match target_type:
@@ -113,19 +113,27 @@ func target_selector_get_index_max_enemies_around(enemies) -> int: # to provide 
 
 ## fire mode
 
+# turret should have animation player that plays muzzle flash animation with name Fire
 func fire_behaviour_gun_shot(single_target, damage, delay):
+	ready = false
+	$AnimationPlayer.play("Fire")
 	single_target.on_hit(damage)
 	yield(get_tree().create_timer(delay), 'timeout')
+	ready = true
 	
 func fire_behaviour_launch_missile(single_target, missile, delay):
+	ready = false	
 	missile.launch(single_target)
 	print("launch missile is not implemented")	
 	yield(get_tree().create_timer(delay), 'timeout')	
+	ready = true
 
 func fire_behaviour_throw_liquid(target, damage, delay): # or flame
+	ready = false
 	# suffering_enemies = get_spash_damage_victims(all_enemies, target)
 	print("throwing liquid is not implemented")	
 	yield(get_tree().create_timer(delay), 'timeout')	
+	ready = true
 
 ######
 
