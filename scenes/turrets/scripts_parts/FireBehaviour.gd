@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name FireBehaviour
+
 func gun_shot(single_target, damage, delay):
 	single_target.on_hit(damage)
 	yield(get_tree().create_timer(delay), 'timeout')

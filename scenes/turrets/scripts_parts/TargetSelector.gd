@@ -1,5 +1,7 @@
 extends Node
 
+class_name TargetSelector
+
 func get_index_nearest(enemies) -> int:
 	var enemy_progress_array = []
 	for i in enemies:
